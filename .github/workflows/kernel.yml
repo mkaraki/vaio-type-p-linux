@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'torvalds/linux'
-          path: 'linux-kernel'
+          path: 'linux'
           ref: 'v6.6'
 
       - name: Copy linux configs / scripts
