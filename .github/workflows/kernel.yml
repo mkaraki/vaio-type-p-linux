@@ -36,7 +36,7 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE/linux"
           ./xkmake olddefconfig
-          ./xkmake
+          ./xkmake -j `nproc --all`
 
       - name: Upload linux kernel
         uses: actions/upload-artifact@v4
