@@ -35,8 +35,8 @@ jobs:
       - name: Build linux
         run: |
           cd "$GITHUB_WORKSPACE/linux"
-          make olddefconfig
-          make
+          ./xkmake olddefconfig
+          ./xkmake
 
       - name: Upload linux kernel
         uses: actions/upload-artifact@v4
@@ -53,7 +53,7 @@ jobs:
           cp -r linux fake-env/linuxsrc
           mkdir fake-env/boot
           mkdir -p fake-env/lib/modules
-          chroot "$GITHUB_WORKSPACE/fake-env" /bin/sh -c "cd /linuxsrc && make modules_install && make install"
+          chroot "$GITHUB_WORKSPACE/fake-env" /bin/sh -c "cd /linuxsrc && ./xkmake modules_install && ./xkmake install"
           rm -rf fake-env/bin
           rm -rf fake-env/usr/bin
           rm -rf fake-env/linuxsrc
