@@ -56,7 +56,7 @@ jobs:
           cp -r linux fake-env/linuxsrc
           mkdir fake-env/boot
           mkdir -p fake-env/lib/modules
-          sudo chroot "$GITHUB_WORKSPACE/fake-env" /bin/bash -c "cd /linuxsrc && ./xkmake modules_install && ./xkmake install"
+          sudo chroot "$GITHUB_WORKSPACE/fake-env" /usr/bin/bash -c "cd /linuxsrc && ./xkmake modules_install && ./xkmake install"
           rm -rf fake-env/bin
           rm -rf fake-env/usr/bin
           rm -rf fake-env/linuxsrc
