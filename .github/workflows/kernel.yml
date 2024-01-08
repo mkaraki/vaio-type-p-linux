@@ -30,7 +30,7 @@ jobs:
           chmod +x linux/xkmake
           
       - name: Install packages
-        run: sudo apt install build-essestial libncurses-dev ncurses-bin pkg-config bison flex crossbuild-essential-i386 make
+        run: sudo apt install build-essential libncurses-dev ncurses-bin pkg-config bison flex crossbuild-essential-i386 make
 
       - name: Build linux
         run: |
