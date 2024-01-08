@@ -1,0 +1,67 @@
+name: Build Linux Kernel
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Checkout linux
+        uses: actions/checkout@v4
+        with:
+          repository: 'torvalds/linux'
+          path: 'linux-kernel'
+          ref: 'v6.6'
+
+      - name: Copy linux configs / scripts
+        run: |
+          cp kernel/.config linux/.config
+          cp kernel/xkmake linux/xkmake
+          chmod +x linux/xkmake
+          
+      - name: Install packages
+        run: sudo apt install build-essestial libncurses-dev ncurses-bin pkg-config bison flex crossbuild-essential-i386 make
+
+      - name: Build linux
+        run: |
+          cd "$GITHUB_WORKSPACE/linux"
+          make olddefconfig
+          make
+
+      - name: Upload linux kernel
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-kernel-with-src
+          path: linux
+
+      - name: Fake install linux kernel
+        run: |
+          mkdir fake-env
+          mkdir fake-env/usr
+          cp -r /bin fake-env/bin
+          cp -r /usr/bin fake-env/usr/bin
+          cp -r linux fake-env/linuxsrc
+          mkdir fake-env/boot
+          mkdir -p fake-env/lib/modules
+          chroot "$GITHUB_WORKSPACE/fake-env" /bin/sh -c "cd /linuxsrc && make modules_install && make install"
+          rm -rf fake-env/bin
+          rm -rf fake-env/usr/bin
+          rm -rf fake-env/linuxsrc
+
+      - name: Upload installed fake env
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-fake-env
+          path: fake-env
+          
+          
