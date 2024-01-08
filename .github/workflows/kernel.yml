@@ -38,11 +38,14 @@ jobs:
           ./xkmake olddefconfig
           ./xkmake -j `nproc --all`
 
+      - name: tar Linux
+        run: tar cf linux.tar linux 
+
       - name: Upload linux kernel
         uses: actions/upload-artifact@v4
         with:
           name: linux-kernel-with-src
-          path: linux
+          path: linux.tar
 
       - name: Fake install linux kernel
         run: |
