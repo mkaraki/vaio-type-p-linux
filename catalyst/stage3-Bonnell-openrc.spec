@@ -1,0 +1,10 @@
+subarch: bonnell
+target: stage3
+version_stamp: openrc-@Timestamp@
+rel_type: 23.0-openrc
+profile: default/linux/x86/23.0/i686
+snapshot_treeish: 59ca0a188467b4e235eabfa6e48d9c614949393b
+source_subpath: 23.0-openrc/stage1-bonnell-openrc-@Timestamp@
+portage_confdir: /var/tmp/catalyst/config/stages
+portage_prefix: releng
+compression_mode: pixz

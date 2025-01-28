@@ -1,0 +1,10 @@
+app-alternatives/lex flex -reflex
+app-alternatives/yacc bison
+app-alternatives/tar gnu
+app-alternatives/gzip reference
+app-alternatives/bzip2 reference
+sys-libs/libcap -pam
+net-misc/curl -http2 -http3 -quic -curl_quic_openssl
+app-crypt/libb2 -openmp
+app-portage/portage-utils -openmp
+sys-devel/gettext -openmp
