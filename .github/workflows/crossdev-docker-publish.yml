@@ -71,7 +71,7 @@ jobs:
         with:
           context: crossdev-env
           build-args: |
-            MAKEOPTS="-j ${{ steps.cpu-cores.outputs.count }}"
+            MAKEOPTS=-j ${{ steps.cpu-cores.outputs.count }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
