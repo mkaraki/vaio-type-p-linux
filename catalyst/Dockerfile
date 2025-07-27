@@ -17,7 +17,7 @@ RUN mkdir -p /var/tmp/catalyst/builds/default &&\
     echo 'sys-kernel/gentoo-sources ~x86' >> /var/tmp/catalyst/config/stages/package.accept_keywords/stage4
 
 COPY make.conf /var/tmp/catalyst/config/stages/
-COPY package.use /var/tmp/catalyst/config/stages/
+COPY package.use /var/tmp/catalyst/config/stages/package.use/catalyst-era
 
 COPY *.spec /var/tmp/catalyst/
 
