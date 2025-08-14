@@ -1,1 +1,3 @@
 app-arch/xz-utils -pgo
+app-shells/bash -pgo
+*/* -pgo
